@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './App.css';
 import Reservations from "../Reservations/Reservations"
 import Form from '../Form/Form'
+import { callReservationApi, postReservationApi } from "../../APICalls";
 
 
 class App extends Component {
@@ -14,12 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3001/api/v1/reservations")
-        .then(response => {
-          if (response.ok) {
-            return response.json()
-          }
-        })
+    callReservationApi()
         .then(data => {
           this.setState({reservations: [...this.state.reservations, ...data]})
         })
@@ -29,18 +25,8 @@ class App extends Component {
   }
 
   addNewReservation = (newReservation) => {
-    fetch("http://localhost:3001/api/v1/reservations", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(newReservation)
-    })
-        .then(response => response.json())
-        .then(data => {
-          this.setState({reservations: [...this.state.reservations, data]})
-        })
-        .catch(error => this.setState({error: "Something went wrong with your reservation add, please try again"}))
+          this.setState({reservations: [...this.state.reservations, newReservation]})
+    postReservationApi(newReservation)
   }
 
 
