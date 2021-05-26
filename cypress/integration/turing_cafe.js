@@ -11,7 +11,7 @@ describe('Turing Cafe', () => {
 
   it("user should be able to fill out the form name input", () => {
         cy.get('input[name="name"]').type('Bryan')
-        .should('have.value', "Bryan")
+        .should('have.value', 'Bryan')
     })
   it("user should be able to fill out the form date input", () => {
         cy.get('input[name="date"]').type('09/13')
@@ -39,7 +39,7 @@ describe('Turing Cafe', () => {
         .get('input[type="number"]')
         .type(7)
         .should('have.value', 7)
-      cy.get('.submit-button').click()
+        cy.get('.submit-button').click()
   })
 
 })
