@@ -2,7 +2,7 @@ import React from "react";
 import ReservationCard from "../ReservationCard/ReservationCard"
 import "./Reservations.css"
 
-const ReservationCard = ({ reservations }) => {
+const Reservations = ({ reservations }) => {
   const reservationBookings = reservations.map(reservation => {
     return <ReservationCard
         key={reservation.id}
@@ -13,4 +13,12 @@ const ReservationCard = ({ reservations }) => {
         number={reservation.number}
         />
   })
+
+  return (
+      <section className="resy-container">
+        {reservationBookings}
+      </section>
+  )
 }
+
+export default Reservations;
